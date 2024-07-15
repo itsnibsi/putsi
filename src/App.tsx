@@ -1,22 +1,29 @@
-import { AddictionProvider } from './contexts/AddictionContext';
 import AddictionList from './components/AddictionList';
-import AddAddictionForm from './components/AddAddictionForm';
 import MotivationDisplay from './components/MotivationDisplay';
-import { MoodsProvider } from './contexts/MoodsContext';
 import MoodTracker from './components/MoodTracker';
+import AddictionForm from './components/AddictionForm';
+import { useSettingsStore } from './stores/settings';
+import DarkModeToggle from './components/DarkModeToggle';
 
 function App() {
+  const { isDarkMode } = useSettingsStore();
+
+  if (isDarkMode) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-2xl mx-auto space-y-4">
+    <div className='min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white relative'>
+      <div className="max-w-2xl mx-auto space-y-4 pb-16">
         <MotivationDisplay />
-        <AddictionProvider>
-          <AddAddictionForm />
-          <AddictionList />
-        </AddictionProvider>
-        <MoodsProvider>
-          <MoodTracker />
-        </MoodsProvider>
+        <AddictionForm />
+        <AddictionList />
+        <MoodTracker />
+        <div className='absolute bottom-4 right-4'>
+          <DarkModeToggle />
+        </div>
       </div>
     </div>
   );

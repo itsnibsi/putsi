@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motivationalQuotes } from '../data/motivationalQuotes';
+import motivationalQuotes from '../data/motivationalQuotes';
 
 const MotivationDisplay: React.FC = () => {
   const [currentQuote, setCurrentQuote] = useState(motivationalQuotes[0]);

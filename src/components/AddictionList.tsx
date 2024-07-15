@@ -1,9 +1,9 @@
 import React from 'react';
-import { useAddictionContext } from '../contexts/AddictionContext';
 import AddictionItem from './AddictionItem';
+import { useAddictionsStore } from '../stores/addictions';
 
 const AddictionList: React.FC = () => {
-  const { addictions } = useAddictionContext();
+  const { addictions } = useAddictionsStore();
 
   return (
     <div className="space-y-4">
@@ -11,7 +11,7 @@ const AddictionList: React.FC = () => {
       {addictions.length === 0 ? (
         <p>You haven't added any addictions yet. Start by adding one!</p>
       ) : (
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {addictions.map((addiction) => (
             <li key={addiction.id}>
               <AddictionItem addiction={addiction} />

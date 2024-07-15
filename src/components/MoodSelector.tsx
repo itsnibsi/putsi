@@ -1,7 +1,8 @@
 import React from 'react';
-import { useMoodsContext } from '../contexts/MoodsContext';
 import moodTypes from '../data/moodTypes';
 import { format } from 'date-fns/format';
+import { deleteMood, setMood, useMoodsStore } from '../stores/moods';
+import cn from '../lib/cn';
 
 interface MoodSelectorProps {
   date: string;
@@ -9,34 +10,46 @@ interface MoodSelectorProps {
 }
 
 const MoodSelector: React.FC<MoodSelectorProps> = ({ date, onSelect }) => {
-  const { moods, deleteMood, setMood } = useMoodsContext();
+  const { moods } = useMoodsStore();
   const selectedMood = moods[date];
 
   const handleMoodSelect = (moodValue: number) => {
     if (moods[date] === moodValue) {
-      // If the selected mood is the same as the selected mood, delete it
       deleteMood(date);
     } else {
-      // Otherwise, update it
       setMood(date, moodValue);
       onSelect(moodValue);
     }
   };
 
+  const formattedDate = new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
   return (
     <div className="flex flex-col p-4">
-      <h3 className="text-2xl mb-4">Choose mood for {format(new Date(date), 'MMMM do')}</h3>
-      <div className="flex flex-wrap justify-center">
+      <h3 className="text-2xl mb-4 text-center">Choose your mood for {formattedDate}:</h3>
+      <div className="flex flex-wrap items-center justify-center">
         {moodTypes.map((mood) => (
           <button
             key={mood.value}
             onClick={() => handleMoodSelect(mood.value)}
-            className={`m-1 p-2 rounded-lg ${selectedMood === mood.value ? 'bg-blue-500' : 'bg-gray-300 text-white'
-              }`}
-            style={{ fontSize: '1.5em' }}
+            className={cn('m-1 p-4 w-1/5 rounded-lg', {
+              'bg-blue-500 text-white dark:bg-blue-800 dark:text-white': selectedMood === mood.value,
+              'bg-gray-200 dark:text-white dark:bg-gray-700': selectedMood !== mood.value,
+            })}
             title={mood.name}
           >
-            {mood.emoji}
+            <div className="flex flex-col items-center">
+              {mood.emoji}
+              <div
+                className={cn(
+                  'text-center text-sm font-bold',
+                  selectedMood === mood.value ? 'text-white' : 'text-gray-800',
+                  'dark:text-gray-400 dark:text-white dark:hover:text-white',
+                )}
+              >
+                {mood.name}
+              </div>
+            </div>
           </button>
         ))}
       </div>

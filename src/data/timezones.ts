@@ -1,0 +1,26 @@
+const timezones = [
+  'UTC',
+  'America/New_York',
+  'America/Los_Angeles',
+  'America/Chicago',
+  'America/Denver',
+  'America/Phoenix',
+  'America/Anchorage',
+  'America/Adak',
+  'Pacific/Honolulu',
+  'America/Halifax',
+  'Atlantic/Cape_Verde',
+  'Europe/London',
+  'Europe/Berlin',
+  'Europe/Helsinki',
+  'Europe/Paris',
+  'Europe/Rome',
+  'Europe/Madrid',
+  'Europe/Amsterdam',
+  'Europe/Moscow',
+  'Asia/Tokyo',
+  'Asia/Seoul',
+  'Australia/Sydney',
+]
+
+export default timezones

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { format, subDays } from 'date-fns';
-import { useMoodsContext } from '../contexts/MoodsContext';
 import moodTypes from '../data/moodTypes';
+import { useMoodsStore } from '../stores/moods';
+import cn from '../lib/cn';
 
 interface MoodCalendarProps {
   onSelectDate: (date: string) => void;
@@ -9,7 +10,7 @@ interface MoodCalendarProps {
 }
 
 const MoodCalendar: React.FC<MoodCalendarProps> = ({ todayDate, onSelectDate }) => {
-  const { moods } = useMoodsContext();
+  const { moods } = useMoodsStore();
   const [dates, setDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>(todayDate);
 
@@ -32,24 +33,23 @@ const MoodCalendar: React.FC<MoodCalendarProps> = ({ todayDate, onSelectDate }) 
 
   return (
     <>
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-7 gap-4">
         {dates.map((dateString) => {
           const moodValue = moods[dateString];
           const mood = moodTypes.find((mood) => mood.value === moodValue);
-
           const isSelected = selectedDate === dateString;
-          const className = isSelected ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800';
-          const style = isSelected ? { fontWeight: 'bold' } : {};
 
           return (
             <div
               key={dateString}
-              className={`${className} p-4 rounded-md`}
+              className={cn(`p-2 rounded-md text-center border-gray-200 border cursor-pointer`, {
+                'bg-blue-100 text-blue-800 font-bold border-blue-300 dark:bg-blue-900 dark:text-blue-200': isSelected,
+                'dark:border-gray-700': !isSelected,
+              })}
               onClick={() => handleSelectDate(dateString)}
-              style={style}
             >
-              <div className="text-sm">{format(new Date(dateString), 'MMM do')}</div>
-              <div className="text-xl">{mood ? mood.emoji : '❓'}</div>
+              <div className="text-sm pb-1">{format(new Date(dateString), 'MMM do')}</div>
+              <div className={cn('text-2xl', { 'dark:text-blue-200': isSelected })}>{mood ? mood.emoji : '❓'}</div>
             </div>
           );
         })}

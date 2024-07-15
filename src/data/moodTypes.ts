@@ -1,4 +1,5 @@
 import { MoodType } from '../types';
+
 const moodTypes: MoodType[] = [
   { value: 1, name: 'Panicked', emoji: '😨' },
   { value: 2, name: 'Anxious', emoji: '😟' },
