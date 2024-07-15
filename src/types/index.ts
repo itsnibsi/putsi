@@ -20,3 +20,9 @@ export interface Motivation {
   id: string;
   description: string;
 }
+
+export interface MoodType {
+  value: number;
+  name: string;
+  emoji: string;
+}
