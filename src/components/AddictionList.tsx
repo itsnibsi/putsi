@@ -7,7 +7,6 @@ const AddictionList: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Your Addictions</h2>
       {addictions.length === 0 ? (
         <p>You haven't added any addictions yet. Start by adding one!</p>
       ) : (

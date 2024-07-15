@@ -7,7 +7,7 @@ export interface AddictionType {
 export interface Addiction {
   id: string;
   typeId: string;
-  quitDate: string;
+  quitDate: Date;
   weeklyCost: number;
 }
 
@@ -27,4 +27,11 @@ export interface MoodType {
   value: number;
   name: string;
   emoji: string;
+}
+
+export interface Note {
+  id: string;
+  text: string;
+  created: Date;
+  updated?: Date;
 }

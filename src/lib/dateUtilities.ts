@@ -1,6 +1,8 @@
-export const calculateProgress = (quitDate: string, milestone: number) => {
+import { formatInTimeZone } from 'date-fns-tz';
+
+export const calculateProgress = (quitDate: Date, milestone: number) => {
   const now = new Date().getTime();
-  const quit = new Date(quitDate).getTime();
+  const quit = quitDate.getTime();
   const diffTime = now - quit;
   const progress = (diffTime / (milestone * 24 * 60 * 60 * 1000)) * 100;
   return Math.min(progress, 100);
@@ -29,4 +31,8 @@ export const timeElapsedFromDiff = (diffTime: number) => {
 export function getDaysDifference(date1: Date, date2: Date): number {
   const diffMs = date2.getTime() - date1.getTime();
   return Math.round(diffMs / DateUnitMilliseconds.day);
+}
+
+export function formatDateLocally(date: Date, format: string): string {
+  return formatInTimeZone(date, 'Europe/Helsinki', format);
 }

@@ -8,8 +8,8 @@ const MoodTracker: React.FC = () => {
 
   return (
     <div className='space-y-4'>
-      <h2 className="text-2xl font-bold">Mood Tracker</h2>
-      <div className="p-6 mb-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
+      <div className="p-6 mb-6 bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <h2 className="text-2xl font-bold">Mood Tracker</h2>
         <MoodSelector date={selectedDate} onSelect={(value) => setMood(selectedDate, value)} />
         <MoodCalendar todayDate={selectedDate} onSelectDate={(date) => setSelectedDate(date)} />
       </div>

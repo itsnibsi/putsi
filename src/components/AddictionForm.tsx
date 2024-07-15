@@ -2,6 +2,7 @@ import { addictionTypes } from '../data/addictionTypes';
 import { useForm } from 'react-hook-form';
 import { addAddiction, editAddiction } from '../stores/addictions';
 import { Addiction } from '../types';
+import { format } from 'date-fns';
 
 type AddictionFormFields = {
   typeId: string;
@@ -20,14 +21,15 @@ function AddictionForm({ addiction, onHandleCancel, onHandleSubmit }: AddictionF
 
   const onSubmit = (data: AddictionFormFields) => {
     const { typeId, quitDate, weeklyCost } = data;
+    const actualDate = new Date(quitDate);
 
     if (addiction) {
-      const updatePayload = { typeId, quitDate, weeklyCost: parseFloat(weeklyCost) }
+      const updatePayload = { typeId, quitDate: actualDate, weeklyCost: parseFloat(weeklyCost) }
       editAddiction(addiction.id, updatePayload);
       onHandleSubmit?.({ ...addiction, ...updatePayload });
     }
     else {
-      const newAddiction = { id: Date.now().toString(), typeId, quitDate, weeklyCost: parseFloat(weeklyCost) }
+      const newAddiction = { id: Date.now().toString(), typeId, quitDate: actualDate, weeklyCost: parseFloat(weeklyCost) }
       addAddiction(newAddiction);
       onHandleSubmit?.(newAddiction);
     }
@@ -42,12 +44,12 @@ function AddictionForm({ addiction, onHandleCancel, onHandleSubmit }: AddictionF
 
   const initialValues = {
     typeId: addiction?.typeId,
-    quitDate: addiction?.quitDate,
+    quitDate: format(addiction?.quitDate || new Date(), "yyyy-MM-dd'T'HH:mm"),
     weeklyCost: addiction?.weeklyCost.toString(),
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white shadow-md rounded-lg p-6 mb-6 dark:bg-gray-800">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white shadow-md hover:shadow-lg transition-all rounded-lg p-6 mb-6 dark:bg-gray-800">
       <h2 className="text-2xl font-bold mb-4 dark:text-white">Add New Addiction</h2>
       <div className="dark:text-gray-300">
         <label htmlFor="typeId" className="block mb-1">Addiction Type:</label>

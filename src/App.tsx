@@ -4,6 +4,8 @@ import MoodTracker from './components/MoodTracker';
 import AddictionForm from './components/AddictionForm';
 import { useSettingsStore } from './stores/settings';
 import DarkModeToggle from './components/DarkModeToggle';
+import NoteForm from './components/NoteForm';
+import NoteList from './components/NoteList';
 
 function App() {
   const { isDarkMode } = useSettingsStore();
@@ -21,7 +23,10 @@ function App() {
         <AddictionForm />
         <AddictionList />
         <MoodTracker />
-        <div className='absolute bottom-4 right-4'>
+        <div>
+          <NoteList />
+        </div>
+        <div className='fixed top-4 right-4'>
           <DarkModeToggle />
         </div>
       </div>
