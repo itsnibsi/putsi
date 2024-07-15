@@ -14,9 +14,8 @@ const MotivationDisplay: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 mb-6">
-      <h2 className="text-2xl font-bold mb-4">Daily Motivation</h2>
-      <blockquote className="italic text-lg">
+    <div className="p-6 mb-6">
+      <blockquote className="italic text-2xl text-center text-blue-600 font-bold">
         "{currentQuote.description}"
       </blockquote>
     </div>

@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
-import { useAddictionContext } from '../contexts/AddictionContext';
+import { Addiction } from '../types';
 import { addictionTypes } from '../data/addictionTypes';
 
-const AddAddictionForm: React.FC = () => {
-  const { addAddiction } = useAddictionContext();
-  const [typeId, setTypeId] = useState('');
-  const [quitDate, setQuitDate] = useState('');
-  const [weeklyCost, setWeeklyCost] = useState('');
+interface EditAddictionFormProps {
+  addiction: Addiction;
+  onSave: (updatedAddiction: Addiction) => void;
+  onCancel: () => void;
+}
+
+const EditAddictionForm: React.FC<EditAddictionFormProps> = ({ addiction, onSave, onCancel }) => {
+  const [typeId, setTypeId] = useState(addiction.typeId);
+  const [quitDate, setQuitDate] = useState(addiction.quitDate);
+  const [weeklyCost, setWeeklyCost] = useState(addiction.weeklyCost.toString());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (typeId && quitDate && weeklyCost) {
-      addAddiction({
-        id: Date.now().toString(),
+      onSave({
+        ...addiction,
         typeId,
         quitDate,
         weeklyCost: parseFloat(weeklyCost),
       });
-      setTypeId('');
-      setQuitDate('');
-      setWeeklyCost('');
     }
   };
 
@@ -33,7 +35,7 @@ const AddAddictionForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 bg-white shadow-md rounded-lg p-6 mb-6">
-      <h2 className="text-2xl font-bold mb-4">Add New Addiction</h2>
+      <h2 className="text-2xl font-bold mb-4">Edit Addiction</h2>
       <div>
         <label htmlFor="typeId" className="block mb-1">Addiction Type:</label>
         <select
@@ -43,7 +45,6 @@ const AddAddictionForm: React.FC = () => {
           required
           className="w-full px-3 py-2 border rounded-md"
         >
-          <option value="">Select an addiction type</option>
           {addictionTypes.map(type => (
             <option key={type.id} value={type.id}>{type.name}</option>
           ))}
@@ -73,11 +74,16 @@ const AddAddictionForm: React.FC = () => {
           className="w-full px-3 py-2 border rounded-md"
         />
       </div>
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-        Add Addiction
-      </button>
+      <div className="flex justify-between">
+        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+          Save Changes
+        </button>
+        <button type="button" onClick={onCancel} className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400">
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };
 
-export default AddAddictionForm;
+export default EditAddictionForm;
