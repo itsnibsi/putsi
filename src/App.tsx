@@ -1,7 +1,5 @@
 import AddictionList from './components/AddictionList';
-import MotivationDisplay from './components/MotivationDisplay';
 import MoodTracker from './components/MoodTracker';
-import AddictionForm from './components/AddictionForm';
 import { useSettingsStore } from './stores/settings';
 import DarkModeToggle from './components/DarkModeToggle';
 import NoteList from './components/NoteList';
@@ -18,7 +16,6 @@ function App() {
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white relative'>
       <div className="max-w-3xl mx-auto space-y-4 p-8">
-        {/* <MotivationDisplay /> */}
         <AddictionList />
         <MoodTracker />
         <NoteList />
