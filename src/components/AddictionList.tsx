@@ -18,7 +18,7 @@ const calculateTotalMoneySaved = (addictions: Addiction[]) => {
 
 const AddictionList: React.FC = () => {
   const { addictions } = useAddictionsStore();
-  const [totalMoneySaved, setTotalMoneySaved] = useState(0);
+  const [totalMoneySaved, setTotalMoneySaved] = useState(calculateTotalMoneySaved(addictions));
 
   useEffect(() => {
     const timer = setInterval(() => {

@@ -13,16 +13,18 @@ interface AddictionItemProps {
 
 const AddictionItem: React.FC<AddictionItemProps> = ({ addiction }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [diffTime, setDiffTime] = useState<number>(0);
+  const [diffTime, setDiffTime] = useState<number>(addiction.quitDate.getTime() - new Date().getTime());
   const [isMilestonesVisible, setIsMilestonesVisible] = useState(false);
 
+  const calculateDiffTime = (a: Addiction) => {
+    const now = new Date();
+    const quitDate = new Date(a.quitDate);
+    const diffTime = Math.abs(now.getTime() - quitDate.getTime());
+    setDiffTime(diffTime);
+  }
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date();
-      const quitDate = new Date(addiction.quitDate);
-      const diffTime = Math.abs(now.getTime() - quitDate.getTime());
-      setDiffTime(diffTime);
-    }, 1000);
+    const timer = setInterval(() => calculateDiffTime(addiction), 1000);
     return () => clearInterval(timer);
   }, [addiction]);
 
