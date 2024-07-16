@@ -44,10 +44,10 @@ const MoodCalendar: React.FC<MoodCalendarProps> = ({ todayDate, onSelectDate }) 
               key={dateString}
               className={cn(
                 `p-2 rounded-md text-center cursor-pointer transition-colors duration-200`,
-                'bg-gradient-to-br border border-gray-200 dark:border-gray-700',
+                'bg-gradient-to-br border border-gray-200 dark:border-gray-800',
                 {
                   'from-blue-400 to-blue-600 text-white dark:from-blue-600 dark:to-blue-800 border-blue-600': isSelected,
-                  'from-white to-gray-100 dark:from-gray-800 dark:to-gray-900': !isSelected,
+                  'bg-white dark:bg-gray-700': !isSelected,
                 }
               )}
               onClick={() => handleSelectDate(dateString)}
