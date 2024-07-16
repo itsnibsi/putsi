@@ -36,16 +36,20 @@ const AddictionList: React.FC = () => {
             <AddictionItem addiction={addiction} />
           </li>
         ))}
-        <li>
-          <div className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden p-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-green-500 dark:text-green-400">
-                {formatMoney(totalMoneySaved, 4)}
+        {
+          addictions.length > 0 && (
+            <li>
+              <div className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden p-6">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-green-500 dark:text-green-400">
+                    {formatMoney(totalMoneySaved, 4)}
+                  </div>
+                  <div className="text-xl text-gray-600 dark:text-gray-400">Money saved in total</div>
+                </div>
               </div>
-              <div className="text-xl text-gray-600 dark:text-gray-400">Money saved in total</div>
-            </div>
-          </div>
-        </li>
+            </li>
+          )
+        }
       </ul>
     </div>
   );
