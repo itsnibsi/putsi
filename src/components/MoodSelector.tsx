@@ -25,7 +25,7 @@ const MoodSelector: React.FC<MoodSelectorProps> = ({ date, onSelect }) => {
 
   return (
     <div className="flex flex-col p-4">
-      <h2 className="text-2xl mb-4 text-center">Choose your mood for {formattedDate}</h2>
+      <h2 className="font-semibold text-2xl mb-4 text-center">Choose your mood for {formattedDate}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
         {moodTypes.map((mood) => (
           <button

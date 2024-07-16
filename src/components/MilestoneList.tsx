@@ -24,11 +24,12 @@ export default function MilestoneList({ addiction }: Props) {
 
   const currentDate = new Date();
   const quitDate = new Date(addiction.quitDate);
+
   return (
     <div className="milestone-list p-4 w-full h-96 overflow-y-scroll dark:bg-gray-800">
       <div className="relative pt-8">
         {finalMilestones.map((milestone, index) => {
-          const progress = calculateProgress(addiction.quitDate, milestone.days);
+          const progress = calculateProgress(quitDate, milestone.days);
           const hasReachedMilestone = progress >= 100;
           const milestoneDate = new Date(quitDate.getTime() + milestone.days * 24 * 60 * 60 * 1000);
           const daysDifference = getDaysDifference(currentDate, milestoneDate);

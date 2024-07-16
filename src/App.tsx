@@ -4,7 +4,6 @@ import MoodTracker from './components/MoodTracker';
 import AddictionForm from './components/AddictionForm';
 import { useSettingsStore } from './stores/settings';
 import DarkModeToggle from './components/DarkModeToggle';
-import NoteForm from './components/NoteForm';
 import NoteList from './components/NoteList';
 
 function App() {
@@ -18,14 +17,11 @@ function App() {
 
   return (
     <div className='min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white relative'>
-      <div className="max-w-2xl mx-auto space-y-4 pb-16">
-        <MotivationDisplay />
-        <AddictionForm />
+      <div className="max-w-3xl mx-auto space-y-4 p-8">
+        {/* <MotivationDisplay /> */}
         <AddictionList />
         <MoodTracker />
-        <div>
-          <NoteList />
-        </div>
+        <NoteList />
         <div className='fixed top-4 right-4'>
           <DarkModeToggle />
         </div>

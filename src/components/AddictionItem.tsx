@@ -67,13 +67,13 @@ const AddictionItem: React.FC<AddictionItemProps> = ({ addiction }) => {
           <div className="text-4xl font-bold text-green-500 dark:text-green-400">
             {formatMoney(moneySaved, 4)}
           </div>
-          <div className="text-xl text-gray-600 dark:text-gray-400">Money Saved</div>
+          <div className="text-xl text-gray-600 dark:text-gray-400">Money saved</div>
         </div>
 
         <div className="flex justify-center">
           <button
             onClick={() => setIsMilestonesVisible(!isMilestonesVisible)}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-200"
+            className="flex items-center space-x-2 px-4 py-2 mb-4 bg-gray-100 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-200 transition-colors duration-200"
           >
             <span>{isMilestonesVisible ? 'Hide' : 'Show'} Milestones</span>
             <span>{isMilestonesVisible ? '▲' : '▼'}</span>

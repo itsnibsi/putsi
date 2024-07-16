@@ -15,7 +15,7 @@ const NoteItem: React.FC<{ note: Note }> = ({ note }) => {
   }
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-800 shadow-md p-6">
       <div className="flex justify-between items-start mb-2">
         <p className="text-sm text-gray-500 dark:text-gray-400">{formattedDate}</p>
         <div className="space-x-2">
@@ -50,7 +50,7 @@ const NoteList: React.FC = () => {
       {notes.length === 0 ? (
         <p>You haven't added any notes yet. Start by adding one!</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="space-y-4 pt-4">
           {notes.map((note) => (
             <li key={note.id}>
               <NoteItem note={note} />

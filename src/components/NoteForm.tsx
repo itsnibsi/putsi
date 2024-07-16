@@ -43,8 +43,8 @@ const NoteForm: React.FC<NoteFormProps> = ({ note, onSave, onCancel }) => {
           placeholder="Write a few words about how you feel..."
         />
       </div>
-      <div className="flex justify-end mt-4">
-        <button type='button' onClick={onCancel} className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 mr-2">Cancel</button>
+      <div className="flex justify-end mt-2">
+        {note && <button type='button' onClick={onCancel} className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 mr-2">Cancel</button>}
         <button
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
