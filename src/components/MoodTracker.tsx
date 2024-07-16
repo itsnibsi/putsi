@@ -7,10 +7,6 @@ const MoodTracker: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
   const [showCalendar, setShowCalendar] = useState(false);
 
-  const toggleCalendar = () => {
-    setShowCalendar((prevState) => !prevState);
-  };
-
   return (
     <div className='space-y-4'>
       <div className="p-6 mb-6 bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
