@@ -13,7 +13,7 @@ interface AddictionItemProps {
 
 const AddictionItem: React.FC<AddictionItemProps> = ({ addiction }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [diffTime, setDiffTime] = useState<number>(addiction.quitDate.getTime() - new Date().getTime());
+  const [diffTime, setDiffTime] = useState<number>(0);
   const [isMilestonesVisible, setIsMilestonesVisible] = useState(false);
 
   const calculateDiffTime = (a: Addiction) => {
