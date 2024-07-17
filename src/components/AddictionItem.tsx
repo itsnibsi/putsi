@@ -51,7 +51,7 @@ const AddictionItem: React.FC<AddictionItemProps> = ({ addiction }) => {
     <div className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="p-6 space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Quitting {addictionType!.name}</h2>
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white">{addictionType!.name} Free</h2>
           <div className="flex space-x-2">
             <ActionButton onClick={handleEdit} label="Edit" icon="✏️" />
             <ActionButton onClick={handleDelete} label="Delete" icon="🗑️" className="hover:bg-red-500" />
